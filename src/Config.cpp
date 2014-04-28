@@ -8,7 +8,7 @@
 #include "Config.h"
 #include "Defaults.h"
 
-#include <EEPROM.h>
+#include <arduinolib\EEPROM\EEPROM.h>
 
 CConfig::CConfig() {
 	// Set Configuration to default values

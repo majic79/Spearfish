@@ -24,7 +24,10 @@ CConfig config;
 void setup()
 {
 	// Create new instance and call the constructor, passing in the configuration class.
+	config.RetrieveSettings();
 	SF=new CSpearfish(config);
+	Serial.begin(config.getBaudRate());
+	Serial.println(PSTR("Start"));
 }
 
 // Standard Arduino loop() function that repetitively loops through the process

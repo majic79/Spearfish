@@ -14,7 +14,7 @@
 
 extern const char PROGMEM __alphabet[];
 
-extern const char PROGMEM *__text[];
+extern const char* PROGMEM __text[];
 
 #define SF_TEXT(a) __text[a]
 

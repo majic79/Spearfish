@@ -5,6 +5,8 @@
  *      Author: Chris
  */
 
+#include <avr/pgmspace.h>
+
 #include "Spearfish.h"
 #include "Texts.h"
 

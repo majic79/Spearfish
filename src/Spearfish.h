@@ -12,7 +12,8 @@
 #ifndef SPEARFISH_H_
 #define SPEARFISH_H_
 
-#include <avr/pgmspace.h>
+//#include <avr/pgmspace.h>
+
 #include "HardwareSerial.h"
 #include "Config.h"
 

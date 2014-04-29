@@ -3,6 +3,8 @@
  *
  *  Created on: 29 Apr 2014
  *      Author: Chris Marr
+ *
+ *      Creates tables of text strings for storing in flash for use in firmware
  */
 
 #ifndef TEXTS_H_

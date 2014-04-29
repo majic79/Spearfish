@@ -3,6 +3,8 @@
  *
  *  Created on: 29 Apr 2014
  *      Author: Chris Marr
+ *
+ *  #defines for the language texts used in the firmware
  */
 
 #ifndef LANGUAGE_H_

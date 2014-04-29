@@ -9,8 +9,8 @@
 #define DEFAULTS_H_
 
 // Default values for EEPROM
-#define DEFAULT_NAME	"Spearfish"
-#define DEFAULT_PRINTERNAME	"RepRap 3D Printer"
+
+// Default Baud rate
 #define DEFAULT_BAUD	115200
 
 

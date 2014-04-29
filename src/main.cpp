@@ -15,7 +15,8 @@
 #include "Config.h"
 
 // The C++ way to do this is to declare a pointer and then create a new instance in setup()
-CSpearfish *SF;
+// But we should try to dynamically allocate memory in an embedded device, so here's our instance class
+CSpearfish SF;
 
 // This will only use the default handler for configuration so default (empty) constructor is fine
 CConfig config;
@@ -23,17 +24,22 @@ CConfig config;
 // Standard Arduino setup() function called for initialisation
 void setup()
 {
-	// Create new instance and call the constructor, passing in the configuration class.
-	config.RetrieveSettings();
-	SF=new CSpearfish(config);
-	Serial.begin(config.getBaudRate());
-	Serial.println(PSTR("Start"));
+	// Proper way is to create a new constructor and pass in the Config and Serial instances we're using.
+	// we'll fudge it using static instances of the class and refer to them directly
+
+	// Pass Spearfish the config object (it'll retrieve settings when we pass it in)
+	SF = config;
+	// Pass Spearfish the Serial object
+	SF = Serial;
+
+	// Tell Spearfish to begin it's own setup
+	SF.DoSetup();
 }
 
 // Standard Arduino loop() function that repetitively loops through the process
 void loop()
 {
-
+	SF.DoLoop();
 }
 
 

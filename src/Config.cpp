@@ -8,7 +8,7 @@
 #include "Config.h"
 #include "Defaults.h"
 
-#include <arduinolib\EEPROM\EEPROM.h>
+#include <EEPROM\EEPROM.h>
 
 CConfig::CConfig() {
 	// Set Configuration to default values
@@ -16,7 +16,8 @@ CConfig::CConfig() {
 }
 
 CConfig::~CConfig() {
-	// TODO Auto-generated destructor stub
+	// Auto-generated destructor stub
+	// We shouldn't need to do anything in here as we use this as a static instance for the life of the embedded device
 }
 
 int CConfig::ReadEEPROMBuffer(int &nAddr, void *pDest, size_t len)

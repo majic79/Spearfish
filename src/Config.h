@@ -10,7 +10,6 @@
 
 #include <stdlib.h>
 
-
 //	Development version...
 #define	CONFIG_VER	0x00
 
@@ -21,11 +20,13 @@ public:
 	void RetrieveSettings();
 	void StoreSettings();
 
-	long getBaudRate(){return m_nSerialBaudRate;}
+	//	Baud rate for serial comms
+	unsigned long getBaudRate(){return m_nSerialBaudRate;}
+
 private:
 	int ReadEEPROMBuffer(int &nAddr, void *pDest, size_t len);
 
-	long m_nSerialBaudRate;
+	unsigned long m_nSerialBaudRate;
 };
 
 #endif /* CONFIG_H_ */

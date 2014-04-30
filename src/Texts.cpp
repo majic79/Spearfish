@@ -15,11 +15,14 @@ const char PROGMEM __alphabet[]={
 		'N','O','P','Q','R','S',
 		'T','U','V','W','X','Y','Z',
 		'0','1','2','3','4','5','6','7','8','9',
+		'(',')',':',
 			};
 
 const char* PROGMEM __text[]={
-		LANG_FIRMWARE,
-		LANG_READY,
+		LANG_FIRMWARE,			//	Firmware name
+		LANG_READY,				//	Ready message
+		" (",					//	Date Prefix
+		__DATE__,				//	Compilation date
 };
 
 

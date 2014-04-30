@@ -21,6 +21,8 @@ extern const char* PROGMEM __text[];
 //	Text ID's for texts we want to pull out of flash
 #define TID_FIRMWARE	0
 #define TID_READY		1
+#define TID_PREFIX		2
+#define TID_DATE		3
 
 
 #endif /* TEXTS_H_ */

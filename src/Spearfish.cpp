@@ -10,32 +10,31 @@
 #include "Spearfish.h"
 #include "Texts.h"
 
-#define SERIAL_OUT(a)	if(m_Ser)m_Ser->print(a);
-#define SERIAL_OUT_LN(a)	if(m_Ser)m_Ser->println(a);
-#define SERIAL_OUT_SF(a)	if(m_Ser)m_Ser->print(SF_TEXT(a));
-#define SERIAL_OUT_SF_LN(a)	if(m_Ser)m_Ser->println(SF_TEXT(a));
+#define SERIAL_OUT(a)			m_Ser->print(a);
+#define SERIAL_OUT_LN(a)		m_Ser->println(a);
+#define SERIAL_OUT_SF(a)		m_Ser->print(SF_TEXT(a));
+#define SERIAL_OUT_SF_LN(a)		m_Ser->println(SF_TEXT(a));
 
-CSpearfish::CSpearfish()
+CSpearfish::CSpearfish() :
+	m_Ser(NULL)
 {
 	// default constructor
-	// We ought to take in the CConfig class instance we're going to use in
-	// here, but as we're not dynamically allocating memory due to this
-	// embedded design we'll pass it in later
-	// (see "CSpearfish & operator=" overrides)
-	m_Cfg=NULL;
-	m_Ser=NULL;
 }
 
-CSpearfish::~CSpearfish() {
-	// default destructor to handle resource release
-	// although we probably don't need any for this class,
-	// as it is the be-all and end-all for this firmware
+CSpearfish::~CSpearfish()
+{
+	// default destructor to handle resource release (never actually used!)
 }
 
 void CSpearfish::DoSetup()
 {
-	//	do setup initialisation
-	StartSerial();
+	// If we don't have m_Cfg or m_Ser, then we're doomed from the start...
+	// Read configuration settings
+	ReadWriteSettings(EEPROM_READ);
+	//	Setup the serial line
+	m_Ser->begin(getBaudRate());
+
+	//	Tell whoever's listening who we are
 	SERIAL_OUT_SF(TID_FIRMWARE);SERIAL_OUT_SF(TID_PREFIX);SERIAL_OUT_SF(TID_DATE);SERIAL_OUT_LN(')');
 	//	Any other initialisation
 

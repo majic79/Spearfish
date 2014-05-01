@@ -17,20 +17,18 @@
 #include "HardwareSerial.h"
 #include "Config.h"
 
-class CSpearfish {
+// Derive CSpearfish from an underlying config class (stored in EEPROM)
+class CSpearfish : public CConfig
+{
 public:
 	CSpearfish();
 	virtual ~CSpearfish();
 	void DoSetup();
 	int DoLoop();
 
-	void inline StartSerial(){if(m_Cfg && m_Ser)m_Ser->begin(m_Cfg->getBaudRate());}
-
-	CSpearfish & operator=(CConfig &cfg){m_Cfg=&cfg; return *this;};
-	CSpearfish & operator=(HardwareSerial &ser){m_Ser=&ser;	return *this;};
+	CSpearfish& operator=(HardwareSerial &ser){m_Ser=&ser;	return *this;};
 
 private:
-	CConfig *m_Cfg;
 	HardwareSerial *m_Ser;
 };
 

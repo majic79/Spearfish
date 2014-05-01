@@ -11,12 +11,14 @@
 #include "EEPROM/EEPROM.h"
 
 
-CConfig::CConfig() {
+CConfig::CConfig() :
+	m_nSerialBaudRate(DEFAULT_BAUD)
+{
 	// Set Configuration to default values
-	m_nSerialBaudRate = DEFAULT_BAUD;
 }
 
-CConfig::~CConfig() {
+CConfig::~CConfig()
+{
 	// Auto-generated destructor stub
 	// We shouldn't need to do anything in here as we use this as a static instance for the life of the embedded device
 }
@@ -57,10 +59,14 @@ void CConfig::ReadWriteSettings(bool bRead)
 	//	Retrieve settings from EEPROM
 	int i=0;
 	int nVer;
+
+	if(CONFIG_VER == 0)
+		bRead = EEPROM_WRITE;
+
 	i+=ReadWriteEEPROMBuffer(i, &nVer, sizeof(nVer), bRead);
 
 	if(nVer == CONFIG_VER)
 	{
-		i+=ReadWriteEEPROMBuffer(i,&m_nSerialBaudRate,sizeof(m_nSerialBaudRate), bRead);
+		i+=ReadWriteEEPROMBuffer(i, &m_nSerialBaudRate, sizeof(m_nSerialBaudRate), bRead);
 	}
 }

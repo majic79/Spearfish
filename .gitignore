@@ -20,3 +20,5 @@
 *.out
 *.app
 /Debug/
+/Atmega328P_16MHz/
+/Atmega1284P_20MHz/

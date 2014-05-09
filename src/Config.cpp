@@ -8,7 +8,7 @@
 #include "Config.h"
 #include "Defaults.h"
 
-#include "EEPROM/EEPROM.h"
+#include "dev/eeprom.h"
 
 
 CConfig::CConfig() :
@@ -38,19 +38,13 @@ int CConfig::ReadWriteEEPROMBuffer(int &nAddr, void *pData, size_t len, bool bRe
 
 int CConfig::ReadEEPROMBuffer(int &nAddr, void *pDest, size_t len)
 {
-	size_t n;
-	for (n=0; n<len; n++)
-		*(((uint8_t*)pDest)+n)=EEPROM.read(nAddr+n);
-
+	MCU::EEPROM::read(pDest, (void*)&nAddr, len);
 	return (int)len;
 }
 
 int CConfig::WriteEEPROMBuffer(int &nAddr, void *pDest, size_t len)
 {
-	size_t n;
-	for (n=0; n<len; n++)
-		EEPROM.write(nAddr+n, *(((uint8_t*)pDest)+n));
-
+	MCU::EEPROM::write(pDest, (void*)&nAddr, len);
 	return (int)len;
 }
 
@@ -68,5 +62,7 @@ void CConfig::ReadWriteSettings(bool bRead)
 	if(nVer == CONFIG_VER)
 	{
 		i+=ReadWriteEEPROMBuffer(i, &m_nSerialBaudRate, sizeof(m_nSerialBaudRate), bRead);
+		i+=ReadWriteEEPROMBuffer(i, &m_nTempDevices, sizeof(m_nTempDevices), bRead);
+		i+=ReadWriteEEPROMBuffer(i, &m_nAxis, sizeof(m_nAxis), bRead);
 	}
 }

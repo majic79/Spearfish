@@ -4,7 +4,6 @@
 	<comment></comment>
 	<projects>
 		<project>Arduino</project>
-		<project>Gen7</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

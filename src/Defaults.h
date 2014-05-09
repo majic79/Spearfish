@@ -11,7 +11,8 @@
 // Default values for EEPROM
 
 // Default Baud rate
-#define DEFAULT_BAUD	115200
-
+#define DEFAULT_BAUD		115200
+#define DEFAULT_AXIS_COUNT		1
+#define DEFAULT_TEMP_DEVICES	1
 
 #endif /* DEFAULTS_H_ */

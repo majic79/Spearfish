@@ -32,13 +32,13 @@ void CSpearfish::DoSetup()
 	// Read configuration settings
 	ReadWriteSettings(EEPROM_READ);
 	//	Setup the serial line
-	m_Ser->begin(getBaudRate());
+//	m_Ser->begin(getBaudRate());
 
 	//	Tell whoever's listening who we are
-	SERIAL_OUT_SF(TID_FIRMWARE);SERIAL_OUT_SF(TID_PREFIX);SERIAL_OUT_SF(TID_DATE);SERIAL_OUT_LN(')');
+//	SERIAL_OUT_SF(TID_FIRMWARE);SERIAL_OUT_SF(TID_PREFIX);SERIAL_OUT_SF(TID_DATE);SERIAL_OUT_LN(')');
 	//	Any other initialisation
 
-	SERIAL_OUT_SF_LN(TID_READY)
+//	SERIAL_OUT_SF_LN(TID_READY)
 }
 
 int CSpearfish::DoLoop()

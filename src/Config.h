@@ -30,6 +30,8 @@ private:
 	int ReadEEPROMBuffer(int &nAddr, void *pDest, size_t len);
 	int WriteEEPROMBuffer(int &nAddr, void *pSource, size_t len);
 	unsigned long m_nSerialBaudRate;
+	int m_nTempDevices;
+	int m_nAxis;
 };
 
 #endif /* CONFIG_H_ */

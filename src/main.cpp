@@ -9,7 +9,10 @@
  *
  */
 
-#include <Arduino.h>
+//#include <Arduino.h>
+
+#include "dev/device.h"
+#include "timer.h"
 
 #include "Spearfish.h"
 #include "Config.h"
@@ -36,13 +39,15 @@ void setup()
 	// we'll fudge it using static instances of the class and refer to them directly
 
 	// Pass Spearfish the Serial object we'll use for communication with the outside world
-	SF = Serial;
+//	SF = Serial;
 
 	// Tell Spearfish to begin setting up
 	SF.DoSetup();
 #ifdef KEEPALIVE
 	kaTimer = 0;
-	pinMode(LED_BUILTIN, OUTPUT);
+
+	MCU::bitWrite<uint8_t>(MCU::IO::DDR_B,5,false);
+//	pinMode(LED_BUILTIN, 0);
 #endif
 }
 
@@ -52,28 +57,55 @@ void loop()
 	SF.DoLoop();
 #ifdef KEEPALIVE
 	unsigned long time,diff;
-	time = millis();
+	time = MCU::millis();
 	diff = time - kaTimer;
 	if(diff >= 1000)
 	{
 		if(bState)
 		{
 			bState = false;
-			digitalWrite(LED_BUILTIN,HIGH);
+			MCU::bitWrite<uint8_t>(MCU::IO::PORT_B,5,true);
 		}
 		else
 		{
 			bState = true;
-			digitalWrite(LED_BUILTIN,LOW);
+			MCU::bitWrite<uint8_t>(MCU::IO::PORT_B,5,false);
 		}
 
 		kaTimer = time;
-		Serial.print("Keepalive (");
-		Serial.print(diff);
-		Serial.println(")");
+		//Serial.print("Keepalive (");
+		//Serial.print(diff);
+		//Serial.println(")");
 	}
 #endif
 }
+
+void init()
+{
+	// Configure key services for the device
+	// such as a timer...
+
+}
+
+int main(void)
+{
+	init();
+
+#if defined(USBCON)
+	USBDevice.attach();
+#endif
+
+	setup();
+
+	for (;;)
+	{
+		loop();
+//		if (serialEventRun) serialEventRun();
+	}
+
+	return 0;
+}
+
 
 
 

@@ -13,3 +13,7 @@ Project Goals:
 	  configure)
 
 Progress: Started. Eclipse configured, firmware defined and compiled
+
+Abandoning Arduino integration in favour of a more explicit embedded device target Atmega1284P and dropping the learner interface
+
+http://accu.org/index.php/journals/281
